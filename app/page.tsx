@@ -1,4 +1,4 @@
-import MyCard from "./components/Card";
+import MyCard from "@/app/components/Card";
 
 export default function Home() {
   return (
