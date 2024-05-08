@@ -10,6 +10,15 @@ body {
   overflow-x: hidden;
   font-size: 16px;
 }
+main {
+  display: flex;
+  padding: 2rem 9rem;
+}
+#basket {
+  width: 215px;
+  height: 145px;
+  border: 1px solid red;
+}
 
 footer {
   position: fixed;

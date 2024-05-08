@@ -18,13 +18,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <AntdRegistry>
+      <AntdRegistry>
+        <body className={inter.className}>
           <Header />
-          {children}
+          <main>
+            {children}
+            <div id="basket"></div>
+          </main>
+
           <footer>Created by Tuncay Ekmez</footer>
-        </AntdRegistry>
-      </body>
+        </body>
+      </AntdRegistry>
     </html>
   );
 }
