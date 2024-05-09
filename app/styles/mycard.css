@@ -1,11 +1,12 @@
 .card {
   background-color: #fff;
-  padding: 0.7rem;
+  padding: 0.6rem;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
   display: flex;
 }
 
 .card-img {
+  background-color: darkgray;
   flex: 1;
 }
 
@@ -49,7 +50,7 @@
 
 .card.small {
   width: 180px;
-  height: 300px;
+  height: 302px;
 }
 
 .card.small .card-content {
@@ -69,7 +70,7 @@
   display: none;
 }
 
-.card.small .card-description button {
-  display: block;
+.card.small .card-description a {
+  display: inline-block;
   width: 100%;
 }

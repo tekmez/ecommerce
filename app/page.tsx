@@ -1,6 +1,28 @@
 import MyCard from "@/app/components/Card";
+import MyPagination from "./components/Pagination";
 
-export default function Home() {
+interface ProductProps {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+}
+
+const getData = async () => {
+  const res = await fetch(
+    "https://5fc9346b2af77700165ae514.mockapi.io/products"
+  );
+  const data = await res.json();
+  return Array.from({ length: 12 }, (_, i) => ({
+    id: data[i].id,
+    name: data[i].name,
+    price: data[i].price,
+    description: data[i].description,
+  }));
+};
+
+export default async function Home() {
+  const data = await getData();
   return (
     <div
       style={{
@@ -11,9 +33,17 @@ export default function Home() {
         gap: "3rem",
       }}
     >
-      {Array.from({ length: 12 }).map((_, i) => (
-        <MyCard key={i} size="small" />
+      {data?.map((product: ProductProps) => (
+        <MyCard
+          key={product.id}
+          size="small"
+          id={product.id}
+          name={product.name}
+          price={product.price}
+          description={product.description}
+        />
       ))}
+      <MyPagination />
     </div>
   );
 }
