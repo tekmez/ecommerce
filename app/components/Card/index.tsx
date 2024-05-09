@@ -1,5 +1,6 @@
 import "@/app/styles/mycard.css";
 import MyLink from "../Link";
+import Link from "next/link";
 
 interface MyCardProps {
   size: "small" | "large";
@@ -12,7 +13,11 @@ interface MyCardProps {
 const MyCard = ({ size, name, price, description, id }: MyCardProps) => {
   return (
     <div className={`card ${size}`}>
-      <div className="card-img"></div>
+      {size === "large" ? (
+        <div className="card-img"></div>
+      ) : (
+        <Link href={`/${id}`} className="card-img"></Link>
+      )}
       <div className="card-content">
         <div className="card-info">
           <p className="product-title">{name}</p>
