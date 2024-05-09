@@ -70,7 +70,7 @@
   display: none;
 }
 
-.card.small .card-description a {
+.card.small .card-description button {
   display: inline-block;
   width: 100%;
 }

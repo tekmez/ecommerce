@@ -1,6 +1,9 @@
+"use client";
 import "@/app/styles/mycard.css";
-import MyLink from "../Link";
 import Link from "next/link";
+import { Button } from "antd";
+import { UseAppDispatch } from "@/lib/hooks";
+import { setBasket } from "@/lib/productSlice";
 
 interface MyCardProps {
   size: "small" | "large";
@@ -11,6 +14,10 @@ interface MyCardProps {
 }
 
 const MyCard = ({ size, name, price, description, id }: MyCardProps) => {
+  const dispatch = UseAppDispatch();
+  const handleAddCart = () => {
+    dispatch(setBasket({ id, name, price, total: 1 }));
+  };
   return (
     <div className={`card ${size}`}>
       {size === "large" ? (
@@ -24,7 +31,9 @@ const MyCard = ({ size, name, price, description, id }: MyCardProps) => {
           <p className="product-price">{price} ₺</p>
         </div>
         <div className="card-description">
-          <MyLink url={id} />
+          <Button type="primary" onClick={handleAddCart}>
+            Add to Cart
+          </Button>
           <p>{description}</p>
         </div>
       </div>

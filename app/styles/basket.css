@@ -1,0 +1,31 @@
+.basket-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.basket-header {
+  font-weight: 700;
+  font-size: 1rem;
+}
+.item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.item-price {
+  color: #1677ff;
+}
+.item-counter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.item-total {
+  font-weight: 700;
+  font-size: 1.2rem;
+  background-color: #1677ff;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  border-radius: 0.3rem;
+}
