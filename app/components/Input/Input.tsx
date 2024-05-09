@@ -1,7 +1,7 @@
 import { Input } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
-
-const MyInput = () => {
+import { InputProps } from "antd/lib/input";
+const MyInput = ({ ...rest }: InputProps) => {
   return (
     <Input
       className="search-input"
@@ -9,6 +9,7 @@ const MyInput = () => {
       size="large"
       prefix={<SearchOutlined />}
       allowClear
+      {...rest}
     />
   );
 };

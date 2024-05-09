@@ -1,5 +1,6 @@
 import MyCard from "@/app/components/Card";
 import MyPagination from "./components/Pagination";
+import { getDataSearch } from "./loaders";
 
 interface ProductProps {
   id: string;
@@ -7,32 +8,23 @@ interface ProductProps {
   price: number;
   description: string;
 }
+interface SearchParamsProps {
+  searchParams?: {
+    page?: number | string;
+    query?: string;
+  };
+}
 
-const getData = async () => {
-  const res = await fetch(
-    "https://5fc9346b2af77700165ae514.mockapi.io/products"
-  );
+export default async function Home({
+  searchParams,
+}: Readonly<SearchParamsProps>) {
+  const query = searchParams?.query ?? "";
+  const currentPage = searchParams?.page || 1;
+  const res = await getDataSearch(query, currentPage);
   const data = await res.json();
-  return Array.from({ length: 12 }, (_, i) => ({
-    id: data[i].id,
-    name: data[i].name,
-    price: data[i].price,
-    description: data[i].description,
-  }));
-};
 
-export default async function Home() {
-  const data = await getData();
   return (
-    <div
-      style={{
-        width: "100vw",
-        display: "flex",
-        justifyContent: "center",
-        flexWrap: "wrap",
-        gap: "3rem",
-      }}
-    >
+    <div className="container">
       {data?.map((product: ProductProps) => (
         <MyCard
           key={product.id}

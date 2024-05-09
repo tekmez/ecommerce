@@ -1,20 +1,35 @@
 "use client";
-import { useState } from "react";
-import { Pagination, PaginationProps } from "antd";
-
-// interface MyPaginationProps {
-//   current: number;
-//   onChange: (page: number, pageSize: number) => void;
-// }
+import { Pagination } from "antd";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import type { PaginationProps } from "antd";
 
 const MyPagination = () => {
-  const [current, setCurrent] = useState(1);
-  const onChange: PaginationProps["onChange"] = (page) => {
-    console.log(page);
-    setCurrent(page);
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const currentPage = Number(searchParams.get("page")) || 1;
+
+  const createPageURL = (pageNumber: number | string) => {
+    const params = new URLSearchParams(searchParams);
+    params.set("page", pageNumber.toString());
+    return `${pathname}?${params.toString()}`;
   };
 
-  return <Pagination current={current} onChange={onChange} total={50} />;
+  const onChange: PaginationProps["onChange"] = (page) => {
+    const newUrl = createPageURL(page);
+    router.push(newUrl);
+  };
+
+  return (
+    <Pagination
+      className="pagination"
+      defaultPageSize={12}
+      current={currentPage}
+      total={74}
+      showSizeChanger={false}
+      onChange={onChange}
+    />
+  );
 };
 
 export default MyPagination;
