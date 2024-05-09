@@ -2,19 +2,61 @@
 import { Card, Checkbox } from "antd";
 import type { GetProp } from "antd";
 import MyInput from "../Input/Input";
+import { useEffect, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 const ModelFilterList = () => {
+  const [models, setModels] = useState<string[]>([]);
+  const [filteredModels, setFilteredModels] = useState<string[]>([]);
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const createPageURL = (model: string) => {
+    const params = new URLSearchParams(searchParams);
+    params.delete("model");
+    params.set("model", model);
+    return `${pathname}?${params}`;
+  };
+
   const onChange: GetProp<typeof Checkbox.Group, "onChange"> = (
     checkedValues
   ) => {
-    console.log("checked = ", checkedValues);
+    const newUrl = createPageURL(checkedValues?.join("|") || "");
+    router.push(newUrl);
+    if (!checkedValues?.length) {
+      router.push(pathname);
+    }
   };
-  const plainOptions = ["Apple", "Pear", "Orange"];
+  useEffect(() => {
+    const getModel = async () => {
+      const res = await fetch(
+        "https://5fc9346b2af77700165ae514.mockapi.io/products"
+      );
+      const data = await res.json();
+      const model: string[] = Array.from(
+        new Set(data.map((item: { model: string }) => item.model))
+      );
+      setModels(model);
+      setFilteredModels(model);
+    };
+    getModel();
+  }, []);
+  const handleSearchModels = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const filteredModels = models.filter((model) =>
+      model.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilteredModels(filteredModels);
+  };
   return (
-    <Card title={<MyInput />} style={{ width: 250, overflowY: "auto" }}>
+    <Card
+      title={
+        <MyInput placeholder="Search Model" onChange={handleSearchModels} />
+      }
+      style={{ width: 250, height: 250, overflowY: "auto" }}
+    >
       <Checkbox.Group
         style={{ display: "flex", flexDirection: "column" }}
-        options={plainOptions}
-        defaultValue={["Apple"]}
+        options={filteredModels}
         onChange={onChange}
       />
     </Card>

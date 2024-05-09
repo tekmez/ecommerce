@@ -21,10 +21,10 @@ const Sort = () => {
     <Card title="Sort By" style={{ width: 250 }}>
       <Radio.Group onChange={onChange}>
         <Space direction="vertical">
+          <Radio value={"price"}>Price low to High</Radio>
           <Radio value={"createdAt"}>Old to new</Radio>
           {/* <Radio value={"createdAt"}>New to old</Radio> */}
           {/* <Radio value={"price"}>Price hight to low</Radio> */}
-          <Radio value={"price"}>Price low to High</Radio>
         </Space>
       </Radio.Group>
     </Card>

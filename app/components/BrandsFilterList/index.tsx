@@ -38,6 +38,7 @@ const BrandsFilterList = () => {
         new Set(data.map((item: { brand: string }) => item.brand))
       );
       setBrands(brands);
+      setFilteredBrands(brands);
     };
     getBrands();
   }, []);
@@ -50,8 +51,10 @@ const BrandsFilterList = () => {
   };
   return (
     <Card
-      title={<MyInput onChange={handleSearchBrands} />}
-      style={{ width: 250, height: 350, overflowY: "auto" }}
+      title={
+        <MyInput placeholder="Search Brand" onChange={handleSearchBrands} />
+      }
+      style={{ width: 250, height: 250, overflowY: "auto" }}
     >
       <Checkbox.Group
         style={{ display: "flex", flexDirection: "column" }}
