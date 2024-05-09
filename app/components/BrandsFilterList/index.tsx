@@ -1,5 +1,5 @@
 "use client";
-import { Card, Checkbox } from "antd";
+import { Card, Checkbox, Skeleton } from "antd";
 import type { GetProp } from "antd";
 import MyInput from "../Input/Input";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 const BrandsFilterList = () => {
   const [brands, setBrands] = useState<string[]>([]);
   const [filteredBrands, setFilteredBrands] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -29,6 +30,7 @@ const BrandsFilterList = () => {
   };
 
   useEffect(() => {
+    setLoading(true);
     const getBrands = async () => {
       const res = await fetch(
         "https://5fc9346b2af77700165ae514.mockapi.io/products"
@@ -39,6 +41,7 @@ const BrandsFilterList = () => {
       );
       setBrands(brands);
       setFilteredBrands(brands);
+      setLoading(false);
     };
     getBrands();
   }, []);
@@ -56,12 +59,14 @@ const BrandsFilterList = () => {
       }
       style={{ width: 250, height: 250, overflowY: "auto" }}
     >
-      <Checkbox.Group
-        style={{ display: "flex", flexDirection: "column" }}
-        options={filteredBrands}
-        defaultValue={[]}
-        onChange={onChange}
-      />
+      <Skeleton loading={loading} active>
+        <Checkbox.Group
+          style={{ display: "flex", flexDirection: "column" }}
+          options={filteredBrands}
+          defaultValue={[]}
+          onChange={onChange}
+        />
+      </Skeleton>
     </Card>
   );
 };
