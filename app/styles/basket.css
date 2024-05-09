@@ -29,3 +29,14 @@
   color: #fff;
   border-radius: 0.3rem;
 }
+.basket-list {
+  min-width: 200px;
+  height: 300px;
+  overflow-y: auto;
+}
+@media screen and (max-width: 768px) {
+  .basket-list {
+    width: 200px;
+    height: 300px;
+  }
+}

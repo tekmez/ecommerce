@@ -5,7 +5,6 @@ import Header from "./components/Header";
 import StoreProvider from "./StoreProvider";
 import Basket from "./components/Basket";
 import "./globals.css";
-import FiltersSections from "./containers/FiltersSections";
 
 const inter = Inter({ subsets: ["latin"] });
 

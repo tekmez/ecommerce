@@ -16,7 +16,8 @@ main {
 }
 
 .pagination {
-  position: static;
+  width: 100%;
+  position: relative;
   bottom: 0;
   text-align: center;
 }
@@ -26,4 +27,34 @@ main {
   flex-wrap: wrap;
   justify-content: center;
   gap: 3rem;
+}
+.detail-contaimer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 3rem;
+}
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  main {
+    padding: 2rem 2rem;
+  }
+  .container {
+    gap: 2rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  main {
+    flex-wrap: wrap;
+    padding: 2rem 1rem;
+  }
+  .container {
+    margin-top: 1rem;
+    gap: 1rem;
+    order: 3;
+  }
+  .detail-contaimer {
+    order: 2;
+    gap: 1rem;
+  }
 }

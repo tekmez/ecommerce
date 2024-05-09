@@ -1,4 +1,4 @@
-import React from "react";
+import Link from "next/link";
 import MyCard from "../components/Card";
 
 const getDataById = async (id: string) => {
@@ -12,14 +12,17 @@ const getDataById = async (id: string) => {
 const ProductDetail = async ({ params }: { params: { id: string[] } }) => {
   const data = await getDataById(params.id[0]);
   return (
-    <MyCard
-      key={data.id}
-      size="large"
-      id={data.id}
-      name={data.name}
-      price={data.price}
-      description={data.description}
-    />
+    <div className="detail-contaimer">
+      <MyCard
+        key={data.id}
+        size="large"
+        id={data.id}
+        name={data.name}
+        price={data.price}
+        description={data.description}
+      />
+      <Link href="/">Back to products</Link>
+    </div>
   );
 };
 

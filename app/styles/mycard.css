@@ -22,6 +22,7 @@
 }
 
 .card.large {
+  min-width: 500px;
   width: 75%;
   height: 457px;
   gap: 1rem;

@@ -17,12 +17,12 @@ const Basket = () => {
       header={
         <div className="basket-header">
           Total price:{" "}
-          {basket.reduce((acc, item) => acc + item.price * item.total, 0)} ₺
+          {basket.reduce((acc, item) => acc + item.price * item.total, 0)}₺
         </div>
       }
       size="default"
-      style={{ width: "350px", height: "300px", overflow: "auto" }}
       bordered
+      className="basket-list"
       itemLayout="vertical"
       dataSource={basket}
       renderItem={(item) => (
