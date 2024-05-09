@@ -12,6 +12,8 @@ interface SearchParamsProps {
   searchParams?: {
     page?: number | string;
     query?: string;
+    sortBy?: string;
+    brand?: string;
   };
 }
 
@@ -20,7 +22,9 @@ export default async function Home({
 }: Readonly<SearchParamsProps>) {
   const query = searchParams?.query ?? "";
   const currentPage = searchParams?.page || 1;
-  const res = await getDataSearch(query, currentPage);
+  const sortBy = searchParams?.sortBy || "createdAt";
+  const brand = searchParams?.brand || "";
+  const res = await getDataSearch(query, currentPage, sortBy, brand);
   const data = await res.json();
 
   return (
