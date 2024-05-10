@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sort component snapshot test 1`] = `
+<div>
+  <div
+    class="ant-card ant-card-bordered css-dev-only-do-not-override-1okl62o"
+    style="width: 250px;"
+  >
+    <div
+      class="ant-card-head"
+    >
+      <div
+        class="ant-card-head-wrapper"
+      >
+        <div
+          class="ant-card-head-title"
+        >
+          Sort By
+        </div>
+      </div>
+    </div>
+    <div
+      class="ant-card-body"
+    >
+      <div
+        class="ant-radio-group ant-radio-group-outline css-dev-only-do-not-override-1okl62o"
+      >
+        <div
+          class="ant-space css-dev-only-do-not-override-1okl62o ant-space-vertical ant-space-gap-row-small ant-space-gap-col-small"
+        >
+          <div
+            class="ant-space-item"
+          >
+            <label
+              class="ant-radio-wrapper css-dev-only-do-not-override-1okl62o"
+            >
+              <span
+                class="ant-radio ant-wave-target"
+              >
+                <input
+                  class="ant-radio-input"
+                  type="radio"
+                  value="price"
+                />
+                <span
+                  class="ant-radio-inner"
+                />
+              </span>
+              <span>
+                Price low to High
+              </span>
+            </label>
+          </div>
+          <div
+            class="ant-space-item"
+          >
+            <label
+              class="ant-radio-wrapper css-dev-only-do-not-override-1okl62o"
+            >
+              <span
+                class="ant-radio ant-wave-target"
+              >
+                <input
+                  class="ant-radio-input"
+                  type="radio"
+                  value="createdAt"
+                />
+                <span
+                  class="ant-radio-inner"
+                />
+              </span>
+              <span>
+                Old to new
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

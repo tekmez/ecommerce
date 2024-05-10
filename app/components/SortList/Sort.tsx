@@ -23,8 +23,6 @@ const Sort = () => {
         <Space direction="vertical">
           <Radio value={"price"}>Price low to High</Radio>
           <Radio value={"createdAt"}>Old to new</Radio>
-          {/* <Radio value={"createdAt"}>New to old</Radio> */}
-          {/* <Radio value={"price"}>Price hight to low</Radio> */}
         </Space>
       </Radio.Group>
     </Card>
