@@ -1,17 +1,20 @@
 "use client";
 import "@/app/styles/basket.css";
 import { UseAppDispatch, UseAppSelector } from "@/lib/hooks";
-import { decreaseTotal, increaseTotal } from "@/lib/productSlice";
+import { decreaseTotal, increaseTotal, setBasket } from "@/lib/productSlice";
 import { Button, List } from "antd";
+import { useEffect } from "react";
 const Basket = () => {
   const dispatch = UseAppDispatch();
   const basket = UseAppSelector((state) => state.products.basket);
+
   const handleIecreaseTotal = (id: string) => {
     dispatch(increaseTotal(id));
   };
   const handleDecreaseTotal = (id: string) => {
     dispatch(decreaseTotal(id));
   };
+
   return (
     <List
       header={

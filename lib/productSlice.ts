@@ -12,15 +12,22 @@ interface Product {
   total: number;
 }
 
-const initialState: ProductState = {
-  basket: JSON.parse(localStorage.getItem("basket") || "[]"),
-  product: {
-    id: "",
-    name: "",
-    price: 0,
-    total: 0,
-  },
+const getInitialState = (): ProductState => {
+  const basketString = typeof window !== 'undefined' ? localStorage.getItem("basket") : null;
+  const basket = basketString ? JSON.parse(basketString) : [];
+  
+  return {
+    basket,
+    product: {
+      id: "",
+      name: "",
+      price: 0,
+      total: 0,
+    },
+  };
 };
+
+const initialState: ProductState = getInitialState();
 
 const productSlice = createSlice({
   name: "product",
@@ -35,14 +42,12 @@ const productSlice = createSlice({
       } else {
         state.basket.push(action.payload);
       }
-      localStorage.setItem("basket", JSON.stringify(state.basket));
     },
     increaseTotal: (state, action: PayloadAction<string>) => {
       const product = state.basket.find((p) => p.id === action.payload);
       if (product) {
         product.total += 1;
       }
-      localStorage.setItem("basket", JSON.stringify(state.basket));
     },
     decreaseTotal: (state, action: PayloadAction<string>) => {
       const index = state.basket.findIndex((p) => p.id === action.payload);
@@ -52,8 +57,15 @@ const productSlice = createSlice({
           state.basket.splice(index, 1);
         }
       }
-      localStorage.setItem("basket", JSON.stringify(state.basket));
     },
+  },
+  extraReducers: (builder) => {
+    builder.addMatcher(
+      (action) => action.type.startsWith('product/'),
+      (state) => {
+        localStorage.setItem("basket", JSON.stringify(state.basket));
+      }
+    );
   },
 });
 
