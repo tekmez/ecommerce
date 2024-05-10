@@ -2,6 +2,7 @@ import MyCard from "@/app/components/Card";
 import MyPagination from "./components/Pagination";
 import { getDataSearch } from "./loaders";
 import FiltersSections from "./containers/FiltersSections";
+import { Suspense } from "react";
 
 interface ProductProps {
   id: string;
@@ -30,7 +31,7 @@ export default async function Home({
   const res = await getDataSearch(query, currentPage, sortBy, brand, model);
   const data = await res.json();
   return (
-    <>
+    <Suspense>
       <FiltersSections />
       <div className="container">
         {data?.map((product: ProductProps) => (
@@ -45,6 +46,6 @@ export default async function Home({
         ))}
         <MyPagination />
       </div>
-    </>
+    </Suspense>
   );
 }
